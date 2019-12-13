@@ -15,6 +15,7 @@ public class UiManager : MonoBehaviour
 	//  The values are not set in this script but in the Inspector
 	[SerializeField] private Text scoreText;    //	The UI text component that is under the UI_Canvas.
 	[SerializeField] private GameObject gameOverUI; //	The Gameobject that has as child objects the Game Over text and the restart button.
+	[SerializeField] private GameObject tapToStartUI; //	The Gameobject that has as child objects the Game Over text and the restart button.
 
 	// Awake is called before Start
 	private void Awake()
@@ -30,6 +31,32 @@ public class UiManager : MonoBehaviour
 	{
 		//	When the game starts we want the Game Over related elements
 		HideGameOverUI();
+		ShowTapToStartUI();
+	}
+
+	/// <summary>
+	/// Shows the Tap-To-Start UI elements and freezes the game.
+	/// </summary>
+	public void ShowTapToStartUI()
+	{
+		//	Enables the Gameobject that has as child objects the Game Over text and the restart button.
+		tapToStartUI.SetActive(true);
+
+		//	Timescale takes values from 0 to 1.
+		//	Change the timeScale to 0. That means that the game will be as it is paused.
+		Time.timeScale = 0;
+	}
+
+	/// <summary>
+	/// Hides the Tap-To-Start UI elements and starts the game --> Happens on Button click. Look Inspector TapToStartButton (OnClick)
+	/// </summary>
+	public void HideTapToStartUI()
+	{
+		//	Enables the Gameobject that has as child objects the Game Over text and the restart button.
+		tapToStartUI.SetActive(false);
+
+		//	Change the timeScale to 1. That means that the game will resune in normal speed.
+		Time.timeScale = 1;
 	}
 
 	/// <summary>
@@ -44,7 +71,7 @@ public class UiManager : MonoBehaviour
 	/// <summary>
 	/// Hides the Game Over UI elements.
 	/// </summary>
-	public void HideGameOverUI()
+	private void HideGameOverUI()
 	{
 		//	Disables the Gameobject that has as child objects the Game Over text and the restart button.
 		gameOverUI.SetActive(false);

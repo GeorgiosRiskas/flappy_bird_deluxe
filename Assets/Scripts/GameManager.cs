@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 	}
 
 	/// <summary>
-	/// Restarts the game by reloading the Main scene
+	/// Restarts the game by reloading the Main scene --> Happens on Button click. Look Inspector RestartButton (OnClick)
 	/// </summary>
 	public void RestartGame()
 	{
